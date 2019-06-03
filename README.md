@@ -1,6 +1,6 @@
 <h1>Как запустить проект:</h1>
 <p>Перейти в нужную папку в консоли</p>
-<p>git clone git://github.com/simonprod/yasli_combat - клон проекта на локальную машину</p>
+<p>git clone https://simonprod@github.com/simonprod/yasli_combat - клон проекта на локальную машину</p>
 <p>npm install - подтягиваем зависимости</p>
 <p>npm start - запуск dev-сервера</p>
 <p>dev сервер будет на http://localhost:3000</p>
