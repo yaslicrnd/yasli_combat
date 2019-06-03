@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    font-family: Gilroy, sans-serif;
+}
+@font-face {
+    font-display: swap;
+    font-family: 'Gilroy';
+    src: url('./fonts/Gilroy/Gilroy-Light.eot');
+    src: url('fonts/Gilroy/Gilroy-Light.eot?iefix') format('eot'), 
+        url('./fonts/Gilroy/Gilroy-Light.woff') format('woff'), 
+        url('./fonts/Gilroy/Gilroy-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: 300;
+}
+@font-face {
+    font-display: swap;
+    font-family: 'Gilroy';
+    src: url('./fonts/Gilroy/Gilroy-Regular.eot');
+    src: url('fonts/Gilroy/Gilroy-Regular.eot?iefix') format('eot'), 
+        url('./fonts/Gilroy/Gilroy-Regular.woff') format('woff'), 
+        url('./fonts/Gilroy/Gilroy-Regular.ttf') format('truetype');
+        font-weight: 500;
+        font-style: 500;
+}
+@font-face {
+    font-display: swap;
+    font-family: 'Gilroy';
+    src: url('./fonts/Gilroy/Gilroy-Bold.eot');
+    src: url('fonts/Gilroy/Gilroy-Bold.eot?iefix') format('eot'), 
+        url('./fonts/Gilroy/Gilroy-Bold.woff') format('woff'), 
+        url('./fonts/Gilroy/Gilroy-Bold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: 600;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
+  -webkit-box-shadow: 0 0 0px 1000px trasportent inset;
+  transition: background-color 5000s ease-in-out 0s;
+}

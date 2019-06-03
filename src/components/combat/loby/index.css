@@ -1,0 +1,6 @@
+.combat__loby {
+    height: 70%;
+    display: flex;
+    background: #eee;
+    justify-content: space-between;
+}

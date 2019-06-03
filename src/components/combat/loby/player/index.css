@@ -1,0 +1,92 @@
+.combat__loby__player {
+    width: 25%;
+    padding: 20px;
+    box-sizing: border-box;
+    max-width: 300px;
+    min-width: 300px;
+}
+.combat__player__name {
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+.combat___player__skills_right, .combat__player__name_right {
+    text-align: right;
+}
+.combat__player__ava {
+    width: 100%;
+    height: 300px;
+    margin: 0 auto;
+}
+.combat___player__skills {
+    margin-top: 12px;
+}
+.combat__skills__line {
+    margin-bottom: 4px;
+    font-size: 15px;
+}
+.combat__skills__line_bold {
+    font-weight: 600;
+    margin-right: 6px;
+}
+.combat__head {
+    width: 100%;
+    height: 75px;
+    background-image: url(../../../../res/img/player/player_head.png);
+    margin: 0 auto;
+    cursor: pointer;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.combat__body {
+    width: 200px;
+    height: 70px;
+    margin: 0 auto;
+    cursor: pointer;
+    background-image: url(../../../../res/img/player/player_body.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+.combat__ava__item::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.combat__belt {
+    width: 100%;
+    height: 72px;
+    margin: 0 auto;
+    cursor: pointer;
+    background-image: url(../../../../res/img/player/player_belt.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.combat__ava__item {
+    transition: 0.3s all;
+    position: relative;
+}
+.combat__ava__item:hover {
+    opacity: 0.6;
+}
+.combat__feet {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    cursor: pointer;
+    justify-content: space-between;
+    background-image: url(../../../../res/img/player/player_feet.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 74px;
+}
+.combat__feet__item {
+    width: 48px;
+    height: 62px;
+    background: #333;
+}
+

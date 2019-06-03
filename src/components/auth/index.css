@@ -1,0 +1,104 @@
+.auth h3 {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 28px;
+}
+.auth {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../../res/img/auth_body.jpg);
+    flex-flow: column;
+}
+.auth-case {
+    padding: 36px 28px;
+    box-sizing: border-box;
+    background: -moz-linear-gradient(left, rgba(30,87,153,0) 0%, rgba(0,0,0,1) 50%, rgba(125,185,232,0) 100%);
+    background: -webkit-linear-gradient(left, rgba(30,87,153,0) 0%,rgba(0,0,0,1) 50%,rgba(125,185,232,0) 100%); 
+    background: linear-gradient(to right, rgba(30,87,153,0) 0%,rgba(0,0,0,1) 50%,rgba(125,185,232,0) 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', endColorstr='#007db9e8',GradientType=1 );
+    width: 800px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.auth__form {
+    display: flex;
+    flex-flow: column;
+}
+.auth__message {
+    color: red;
+    margin: 0 auto;
+    margin-bottom: 26px;
+    position: absolute;
+    opacity: 0;
+    transition: 0.3s all;
+    width: 400px;
+    text-align: center;
+}
+.auth__message_active {
+    position: static;
+    opacity: 1;
+}
+.auth__input:not(.auth__input_button):focus {
+    border: 2px solid #ff574b;
+}
+.auth__label {
+    margin-bottom: 18px;
+}
+.auth__input {
+    background: none;
+    border: 2px solid #fff;
+    width: 400px;
+    padding: 20px 30px;
+    font-size: 18px;
+    box-sizing: border-box;
+    outline: none;
+    transition: 0.3s all;
+    border-radius: 30px;
+    color: #fff;
+    max-height: 65px;
+}
+.auth__input::placeholder {
+    color: #ddd;
+}
+.auth__input_button {
+    background: #333;
+    color: #fff;
+    border: 2px solid #333;
+    cursor: pointer;
+    font-size: 19px;
+}
+.auth__input_button:hover {
+    background: #eee;
+    color: #262833;
+}
+.auth__link {
+    margin: 0 auto;
+    display: table;
+    color: #ededed;
+}
+.auth-copyright {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    height: 100px;
+    padding-top: 30px;
+    box-sizing: border-box;
+}
+.auth__link:hover {
+    opacity: 0.8;
+}
+.auth-header {
+    height: 100px;
+    width: 100%;
+}
+.auth__input_error {
+    border-color: red;
+}
+

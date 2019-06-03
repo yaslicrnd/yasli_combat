@@ -1,0 +1,85 @@
+.combat__loby__interface {
+    width: 100%;
+    border-right: 2px solid #ffacac;
+    border-left: 2px solid #ffacac;
+    margin: 20px 0;
+    padding: 0 18px;
+}
+.combat__player__healths {
+    display: flex;
+    width: 100%;
+    height: 12px;
+    background: #ddd;
+    margin-bottom: 8px;
+    border-radius: 30px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.combat__interface__head__step {
+    width: 30px;
+    height: 30px;
+    background: #ddd;
+    border-radius: 100%;
+}
+.combat__interface__head__item {
+    display: flex;
+}
+.combat__healths__status {
+    width: 50%;
+    background: #1cee5b;
+    height: 100%;
+    position: absolute;
+    left: 0;
+}
+.combat__healths__info {
+    position: absolute;
+    top: 0;
+    font-size: 12px;
+}
+.combat__interface__head_versus {
+    text-align: center;
+    font-size: 40px;
+    color: red;
+    font-weight: 600;
+    margin: 0 16px;
+}
+.combat__loby__interface__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.combat__interface__head__item_left .combat__interface__head__step {
+    margin-right: 6px;
+}
+.combat__interface__head__item_right .combat__interface__head__step {
+    margin-left: 6px;
+}
+.combat__loby__interface__step-action {
+    margin: 0 auto;
+    display: table;
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: #aaa;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+.combat__loby__interface__step-action:hover {
+    background: blue;
+}
+.combat__loby__interface__logs {
+    width: 100%;
+    height: 30px;
+    border-top: 2px solid #ddd;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+}
+.combat__interface__head_title {
+    display: flex;
+    align-items: center;
+}

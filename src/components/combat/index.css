@@ -1,0 +1,8 @@
+.combat {
+    height: 100vh;
+}
+.combat__chat {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
