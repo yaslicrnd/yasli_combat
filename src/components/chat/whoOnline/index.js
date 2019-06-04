@@ -6,7 +6,7 @@ class WhoOnline extends Component {
     render() {
 
     	return (
-            <div className="combat__chat__message-list">
+            <div className="combat__chat__who-online">
                 Список тех кто онлайн
                 { /* тут нужно пилить код */ }
             </div>
