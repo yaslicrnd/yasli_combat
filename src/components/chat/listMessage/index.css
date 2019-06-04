@@ -1,15 +1,17 @@
 .combat__chat__message-list {
     width: 100%;
-    margin-top: 5px;
 }
 .combat__chat__message-list ul {
     max-height: 125px;
     overflow: auto;
     list-style: none;
-
-    margin-top: 5px;
-    margin-bottom: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 .message-list__message {
-    margin-top: 10px;
+    padding: 12px 16px;
+}
+.message-list__message:nth-child(2n) {
+    background: #f4fbfe;
 }
