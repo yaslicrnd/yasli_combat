@@ -40,6 +40,7 @@ class Reg extends Component {
                 <AuthForm
                     buttonName={'Регистрация'}
                     buttonClick={this.signIn}
+                    message={this.state.message}
                 />
                 <Link className="auth__link"  to={'/auth/login'}>Авторизация</Link>
             </div>

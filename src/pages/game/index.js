@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { NavLink } from "react-router-dom";
 import LobyComponent from '../../components/combat/loby/index';
 import ListMessageComponent from '../../components/chat/listMessage/index';
 import ListWhoOnline from '../../components/chat/whoOnline/index';
 import ChatForm from '../../components/chat/chatForm/index';
 import '../../components/combat/index.css';
 
-class Home extends Component {
+class Game extends Component {
 
     constructor(props) {
         super(props);
@@ -40,4 +39,4 @@ class Home extends Component {
 
 }
 
-export default Home;
+export default Game;
