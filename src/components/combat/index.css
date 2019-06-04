@@ -4,5 +4,12 @@
 .combat__chat {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    height: 30%;
+}
+.combat__chat__messages {
+    width: 76%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
 }
