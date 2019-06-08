@@ -1,9 +1,9 @@
 .combat__chat__why-online{
-    min-width: 280px;
     box-sizing: border-box;
-    max-width: 280px;
-       
-
+    padding: 20px;
+    border-left: 4px solid #eee;
+    max-width: 300px;
+    min-width: 300px;
 }
 .combat__chat__why-online-list{
     list-style: none;
@@ -17,7 +17,8 @@
     display: flex;
 }
 .combat__chat__why-online-header{
-    text-align: center;
+    margin: 0;
+    color: #333;
 }
 .combat__chat__why-online-info-link{
     background: url(..\..\..\res\img\info.png);

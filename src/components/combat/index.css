@@ -4,7 +4,7 @@
 .combat__chat {
     display: flex;
     justify-content: space-between;
-    height: 30%;
+    height: 35%;
 }
 .combat__chat__messages {
     width: 76%;

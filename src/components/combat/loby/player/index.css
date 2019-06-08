@@ -18,6 +18,7 @@
     margin: 0 auto;
 }
 .combat___player__skills {
+    display: none;
     margin-top: 12px;
 }
 .combat__skills__line {

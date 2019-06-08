@@ -1,43 +1,61 @@
 import React, { Component } from 'react';
 import LogsComponent from './logs/index';
+import FightComponent from './fight/index';
 import './index.css';
 
 class InterfaceComponent extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            status: 1,
+            waiting: null,
+            dataUsers: []
+        };
+
+        this.nameFightButton = ['Готов', 'Ожидание', 'Сбежать'];
+        this.funcFightButton = [this.goWait, this.goFight, this.goExit];
+    }
+
+    goWait = ()=>{ 
+        // polling
+        console.log('polling');
+        this.setState( {status: 2} );
+    }
+
+    goFight = ()=> {
+        // polling
+        this.setState( {status: 3} );
+    }
+
+    goExit = ()=> {
+        this.setState( {status:  1} );
+    }
+
+    polling(url, data) {
+        
+    }
+
+    getNameFightButton = (status)=> {
+        console.log(this.nameFightButton[status-1]);
+        return this.nameFightButton[status-1];
+    }
+    getFuncFightButton = (status)=> this.funcFightButton[status-1];
 
     render() {
 
     	return (
             <div className="combat__loby__interface">
 
-                <div className="combat__loby__interface__head">
-                    { /* 
-                        Должно быть либо:
-                        Привествие
-                        Ожидание боя
-                        Интерфейс боя
-                        В зависимости от какого-то state
-                    */ }
+                { this.status == 3 ? <FightComponent/> : '' }
 
-                    <div className="combat__interface__head__item combat__interface__head__item_left">
-                        <div className="combat__interface__head__step"></div>
-                        <div className="combat__interface__head__step"></div>
-                        <div className="combat__interface__head__step"></div>
-                    </div>
-                    <div className="combat__interface__head_title">
-                        <div className="combat__interface__head_item">username</div>
-                        <div className="combat__interface__head_versus">VS</div>
-                        <div className="combat__interface__head_item">username</div>
-                    </div>
-                    <div className="combat__interface__head__item combat__interface__head__item_right">
-                        <div className="combat__interface__head__step"></div>
-                        <div className="combat__interface__head__step"></div>
-                        <div className="combat__interface__head__step"></div>
-                    </div>
-                </div>
+                <div 
+                    className="combat__loby__interface__step-action"
+                    onClick={this.getFuncFightButton(this.state.status)}
+                >{this.getNameFightButton(this.state.status)}</div>
 
-                <div className="combat__loby__interface__step-action">Готов</div>
-
-                <LogsComponent/>
+                {  this.status == 3 ? <LogsComponent/> : '' }
                 
             </div>
         )
