@@ -1,3 +1,38 @@
-* {
-	
+.combat__chat__why-online{
+    min-width: 280px;
+    box-sizing: border-box;
+    max-width: 280px;
+       
+
+}
+.combat__chat__why-online-list{
+    list-style: none;
+    overflow: auto;
+    padding: 0px;
+
+}
+.combat__chat__why-online-username{
+    margin-bottom: 10px;
+    font-size: 20px;
+    display: flex;
+}
+.combat__chat__why-online-header{
+    text-align: center;
+}
+.combat__chat__why-online-info-link{
+    background: url(..\..\..\res\img\info.png);
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-top:4px; 
+
+}
+.combat__chat__why-online-text{
+    margin-right: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 160px;
+
+
 }
