@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import './index.css';
 import authHelpers from '../../auth/authHelpers'
 import config from '../../../config'
+import helpers from '../../../helpers';
 
 class ChatForm extends Component {
 
-	 constructor(props) {
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -13,39 +14,37 @@ class ChatForm extends Component {
         }
     }
 
-	sendMessage = () => {
-		console.log(this.state.message);
-
-		 let userToken = authHelpers.getToken(); //Получение пользовательского токена
+	sendMessage = () =>{
+        let userToken = authHelpers.getToken(); //Получение пользовательского токена
+        let body = helpers.jsonToUrlEncode({
+            message: this.state.message,
+            token: userToken
+        });
         if(userToken) {
-            fetch(config.backend + '/api/chat',{
+            fetch(config.backend + '/api/chat', {
             	method: 'POST',
-            	  headers: {
-				      'Accept': 'application/json',
-				      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-				    },
-            	body: JSON.stringify({
-            		message: this.state.message,
-            		token: userToken
-            	})
+            	headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+            	body: body
             })
-                .then(res => res.json())
-                .then(data => {
-                    if(data.status === 'error') {
-                        console.error(data);
-                        return;
-                    }
+            .then(res => res.json())
+            .then(data => {
+                if(data.status === 'error') {
+                    console.error(data);
+                    return;
+                }
 
-                    this.setState({
-                        message: ''
-					 })
-                })
+                this.setState({
+                    message: ''
+                 })
+            })
         }
-	}
-	 handleChange = (event) => {
-	    this.setState({message: event.target.value});
-	  }
-    render() {
+	};
+     handleChange = (event) => {
+        this.setState({message: event.target.value});
+     };
+     render() {
 
     	return (
             <div className="combat__chat__form">
@@ -53,12 +52,10 @@ class ChatForm extends Component {
                     <button onClick={this.sendMessage}>
                     Отправить
                     </button>
-          
             </div>
         )
 
-    }
-
+     }
 }
 
 export default ChatForm;
