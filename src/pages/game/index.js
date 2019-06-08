@@ -29,9 +29,9 @@ class Game extends Component {
                 <div className="combat__chat">
                     <div className="combat__chat__messages">
                         <ListMessageComponent></ListMessageComponent>
-                        <ChatForm></ChatForm>
+                        <ListWhoOnline></ListWhoOnline>
                     </div>
-                    <ListWhoOnline></ListWhoOnline>
+                    <ChatForm></ChatForm>
                 </div>
             </div>
         )

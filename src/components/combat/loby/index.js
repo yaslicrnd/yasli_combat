@@ -5,6 +5,15 @@ import './index.css';
 
 class LobyComponent extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            step: 0
+        };
+
+    }
+
     render() {
 
     	return (
@@ -12,11 +21,13 @@ class LobyComponent extends Component {
                 <PlayerComponent 
                     type={'you'}
                     mixin={'left'}
+                    step={this.state.step}
                 ></PlayerComponent>
                 <InterfaceComponent></InterfaceComponent>
                 <PlayerComponent 
                     type={'enemy'}
                     mixin={'right'}
+                    step={this.state.step}
                 ></PlayerComponent>
             </div>
         )

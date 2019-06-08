@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import LogsComponent from './logs/index';
 import FightComponent from './fight/index';
+import config from '../../../../config';
+import helpers from '../../../../helpers';
+import authHelpers from '../../../../components/auth/authHelpers';
 import './index.css';
 
 class InterfaceComponent extends Component {
@@ -18,29 +21,37 @@ class InterfaceComponent extends Component {
         this.funcFightButton = [this.goWait, this.goFight, this.goExit];
     }
 
-    goWait = ()=>{ 
-        // polling
-        console.log('polling');
+    goWait = ()=>{
+        this.pollPending();
+        setInterval(() => this.pollPending(), 3000);
         this.setState( {status: 2} );
     }
 
     goFight = ()=> {
-        // polling
         this.setState( {status: 3} );
     }
 
     goExit = ()=> {
         this.setState( {status:  1} );
     }
+    
+    pollPending = (url, data)=> {
 
-    polling(url, data) {
-        
+        fetch(config.backend + '/api/fight', {
+            body: helpers.jsonToUrlEncode({
+                token: authHelpers.getToken()
+            }),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
+                method: 'POST'
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+        });
+
     }
 
-    getNameFightButton = (status)=> {
-        console.log(this.nameFightButton[status-1]);
-        return this.nameFightButton[status-1];
-    }
+    getNameFightButton = (status)=> this.nameFightButton[status-1];
     getFuncFightButton = (status)=> this.funcFightButton[status-1];
 
     render() {

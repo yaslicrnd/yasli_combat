@@ -1,6 +1,23 @@
-* {
-    
+.combat__chat__form {
+	width: 100%;
+    display: flex;
 }
 .chat__input {
-	width: 60%;
+    width: calc(100% - 100px);
+    box-sizing: border-box;
+    margin: 0;
+    display: flex;
+    border: none;
+    height: 36px;
+    border-top: 2px solid #eeeeee;
+    outline: none;
+}
+.combat__chat__form button {
+    width: 100px;
+    display: flex;
+    background: #ddd;
+    color: #333;
+    font-weight: 600;
+    justify-content: center;
+    outline: none;
 }

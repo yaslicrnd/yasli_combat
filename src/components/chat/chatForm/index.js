@@ -16,10 +16,12 @@ class ChatForm extends Component {
 
 	sendMessage = () =>{
         let userToken = authHelpers.getToken(); //Получение пользовательского токена
+        
         let body = helpers.jsonToUrlEncode({
             message: this.state.message,
             token: userToken
         });
+
         if(userToken) {
             fetch(config.backend + '/api/chat', {
             	method: 'POST',

@@ -5,11 +5,12 @@
     display: flex;
     justify-content: space-between;
     height: 35%;
+    flex-flow: column;
 }
 .combat__chat__messages {
-    width: 76%;
+    width: 100%;
     height: 100%;
     display: flex;
-    flex-flow: column;
     justify-content: space-between;
+    flex-flow: row;
 }

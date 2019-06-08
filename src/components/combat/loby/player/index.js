@@ -31,7 +31,7 @@ class PlayerComponent extends Component {
                     <div className="combat__ava__item combat__belt"></div>
                     <div className="combat__ava__item combat__feet"></div>
                 </div>
-
+                
                 <div className={this.getClassWithMixin('combat___player__skills', mixin)}>
                     <div className="combat__skills__line">
                         <span className="combat__skills__line_bold">Сила:</span>
