@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './index.css';
 import { isEmptyStatement } from '@babel/types';
+import helpers from '../../../helpers';
 
 class WhoOnline extends Component {
   constructor(props) {
@@ -12,8 +13,7 @@ class WhoOnline extends Component {
     };
   }
   getOnline(){
-    fetch('http://ya-combat.tw1.ru/api/online')
-    .then(res => res.json())
+    helpers.ajax('http://ya-combat.tw1.ru/api/online')
     .then(
       (data) => {
         this.setState({

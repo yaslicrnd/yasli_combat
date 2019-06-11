@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './index.css';
 import authHelpers from '../../auth/authHelpers'
 import config from '../../../config'
+import helpers from '../../../helpers';
 
 class ListMessage extends Component {
 
@@ -28,6 +29,7 @@ class ListMessage extends Component {
 
     //Функция жизненого цикла, реагирующая на обновление компонента, при возврате true, обновляет компонент
     shouldComponentUpdate(nextProps, nextState) {
+        if (this.state.messages === undefined || nextState.messages === undefined) return false;
         return this.state.messages.length !== nextState.messages.length;
     }
 
@@ -35,13 +37,8 @@ class ListMessage extends Component {
     getMessages = () => {
         let userToken = authHelpers.getToken(); //Получение пользовательского токена
         if(userToken) {
-            fetch(config.backend + '/api/chat?token=' + userToken)
-                .then(res => res.json())
+            helpers.ajax(config.backend + '/api/chat?token=' + userToken)
                 .then(data => {
-                    if(data.status === 'error') {
-                        return;
-                    }
-
                     this.setState({
                         messages: data.chat
 

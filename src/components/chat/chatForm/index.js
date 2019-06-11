@@ -23,20 +23,14 @@ class ChatForm extends Component {
         });
 
         if(userToken) {
-            fetch(config.backend + '/api/chat', {
+            helpers.ajax(config.backend + '/api/chat', {
             	method: 'POST',
             	headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
             	body: body
             })
-            .then(res => res.json())
             .then(data => {
-                if(data.status === 'error') {
-                    console.error(data);
-                    return;
-                }
-
                 this.setState({
                     message: ''
                  })
