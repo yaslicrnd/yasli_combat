@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
-import { interfaceReducer } from '../components/combat/loby/interface/interfaceReducers';
-import { playerReducer } from '../components/combat/loby/player/playerReducers';
+import { lobyReducer } from '../components/combat/loby/lobyReducers';
 
 export default combineReducers({
-    interface: interfaceReducer,
-    player: playerReducer
+    loby: lobyReducer
 });

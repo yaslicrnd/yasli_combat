@@ -14,50 +14,40 @@ class ChatForm extends Component {
         }
     }
 
-	sendMessage = () =>{
-        let userToken = authHelpers.getToken(); //Получение пользовательского токена
-        
-        let body = helpers.jsonToUrlEncode({
-            message: this.state.message,
-            token: userToken
-        });
+	sendMessage = ()=> {
+
+        let userToken = authHelpers.getToken();
 
         if(userToken) {
+
             fetch(config.backend + '/api/chat', {
             	method: 'POST',
-            	headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-            	body: body
+            	headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            	body: helpers.jsonToUrlEncode({message: this.state.message, token: userToken})
             })
             .then(res => res.json())
             .then(data => {
-                if(data.status === 'error') {
-                    console.error(data);
-                    return;
-                }
+                if(data.status === 'error') return;
+                this.setState( { message: '' } );
+            });
 
-                this.setState({
-                    message: ''
-                 })
-            })
         }
-	};
-     handleChange = (event) => {
+    }
+    
+    handleChange = (event)=> {
         this.setState({message: event.target.value});
-     };
-     render() {
+    }
+
+    render() {
 
     	return (
             <div className="combat__chat__form">
-                    <input className="chat__input" value={this.state.message} onChange={this.handleChange} />
-                    <button onClick={this.sendMessage}>
-                    Отправить
-                    </button>
+                <input className="chat__input" value={this.state.message} onChange={this.handleChange} />
+                <button onClick={this.sendMessage}>Отправить</button>
             </div>
         )
 
-     }
+    }
 }
 
 export default ChatForm;
