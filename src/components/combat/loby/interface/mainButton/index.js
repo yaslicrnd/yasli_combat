@@ -42,7 +42,27 @@ class MainButtonComponent extends Component {
 
     // polling
     goWait = ()=> {
+        if(!this.combat) {
+            fetch(config.backend + '/api/info?' + helpers.jsonToUrlEncode({
+                token: authHelpers.getToken(),
+                user_id: this.props.players.you.id
+            }))
+            .then(res => res.json())
+            .then(data => {
+                if(data.combats.length && data.combats[0].id) {
+                    this.combat = data.combats[0].id;
+                    authHelpers.setCombat(data.combats[0].id);
+                    this.startWaiting();
+                } else {
+                    this.createFight();
+                }
+            });
+        } else {
+            this.startWaiting();
+        }
+    }
 
+    createFight = ()=> {
         if(!this.combat) {
             fetch(config.backend + '/api/fight', {
                 body: helpers.jsonToUrlEncode({token: authHelpers.getToken()}),
@@ -54,10 +74,7 @@ class MainButtonComponent extends Component {
                 authHelpers.setCombat(data.combat.id);
                 this.startWaiting();
             });
-        } else {
-            this.startWaiting();
         }
-
     }
 
     startWaiting = ()=> {
@@ -155,7 +172,8 @@ const mapStateToProps = state => ({
     status: state.loby.status,
     items: state.loby.items,
     turn_status: state.loby.turn_status,
-    results: state.loby.results
+    results: state.loby.results,
+    players: state.loby.players
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainButtonComponent);
