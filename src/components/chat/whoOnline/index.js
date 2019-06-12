@@ -18,10 +18,10 @@ class WhoOnline extends Component {
   	getOnline = ()=> {
 
     	fetch('http://ya-combat.tw1.ru/api/online')
-    	.then(res => res.json())
-    	.then(data => {
-       		this.setState( { online:data } );
-		});
+    	  .then(res => res.json())
+    	  .then(data => {
+       		  this.setState( { online:data } );
+		    });
 
 	}
     

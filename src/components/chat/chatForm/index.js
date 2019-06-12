@@ -19,18 +19,14 @@ class ChatForm extends Component {
         let userToken = authHelpers.getToken();
 
         if(userToken) {
-
-            fetch(config.backend + '/api/chat', {
+            helpers.ajax(config.backend + '/api/chat', {
             	method: 'POST',
             	headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             	body: helpers.jsonToUrlEncode({message: this.state.message, token: userToken})
             })
-            .then(res => res.json())
             .then(data => {
-                if(data.status === 'error') return;
-                this.setState( { message: '' } );
+                this.setState({ message: '' })
             });
-
         }
     }
     
