@@ -1,63 +1,89 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { changeStatusItem } from '../lobyActions';
 import './index.css';
 
 class PlayerComponent extends Component {
 
-    // return default class or class + mixin
+    // making classes
     getClassWithMixin = (name, mixin)=> mixin ? name + ' ' + name + '_' + mixin : name;
+    getPercentHealth = (health)=> {
+        if(!health) return 0;
+        
+        let result = health / 30 * 100 || 100;
+        if(result >= 0) {
+            return result;
+        } else {
+            return 0;
+        }
+    }
 
-    // return class name main block + his type
-    getClassTypePlayer = (type)=> 'combat__loby__player__' + type + ' ' + 'combat__loby__player';
+    getClassTypePlayer = (type, status)=> {
+        let str = 'combat__loby__player__' + type + ' combat__loby__player';
+        if(status < 3) str += ' combat__loby__player_disable';
+        return str;
+    }
+
+    getNamePlayer = (type, username)=> {
+        if(type === 'enemy' && !username) return 'Возможный противник';
+        return username;
+    }
+
+    getClassItemAva = (item)=> {
+        let { type, items } = this.props;
+        if(items[type][item]) {
+            return 'combat__ava__item_active combat__ava__item combat__' + item;
+        } else {
+            return 'combat__ava__item combat__' + item;
+        }
+    }
 
     render() {
 
-        let { mixin, type } = this.props;
+        let { type, players, status, changeStatusItem } = this.props;
+
+        console.log(players);
 
     	return (
-            <div className={this.getClassTypePlayer(type)}>
+            <div className={this.getClassTypePlayer(type, status)}>
 
-                { /* в отдельный комнонент? */ }
                 <div className="combat__player__healths">
-                    <div className="combat__healths__status"></div>
-                    <div className="combat__healths__info">50/100</div>
+                    <div 
+                        className="combat__healths__status" 
+                        style={ {width: this.getPercentHealth(players[type].health).toFixed(0) + '%'} }
+                    ></div>
+                    <div className="combat__healths__info">
+                        {this.getPercentHealth(players[type].health).toFixed(0)}/100%
+                    </div>
                 </div>
 
-                <div className={this.getClassWithMixin('combat__player__name', mixin)}>username</div>
+                <div className={this.getClassWithMixin('combat__player__name', type)}>
+                    {this.getNamePlayer(type, players[type].username)}
+                </div>
 
-                { /* в отдельный комнонент? */ }
                 <div className="combat__player__ava">
-                    <div className="combat__ava__item combat__head"></div>
-                    <div className="combat__ava__item combat__body"></div>
-                    <div className="combat__ava__item combat__belt"></div>
-                    <div className="combat__ava__item combat__feet"></div>
+                    <div 
+                        onClick={status === 3 ? changeStatusItem.bind(this, type) : null} 
+                        data-item="head"
+                        className={this.getClassItemAva('head')}
+                    ></div>
+                    <div 
+                        onClick={status === 3 ? changeStatusItem.bind(this, type) : null} 
+                        data-item="body"
+                        className={this.getClassItemAva('body')}
+                    ></div>
+                    <div 
+                        onClick={status === 3 ? changeStatusItem.bind(this, type) : null} 
+                        data-item="belt"
+                        className={this.getClassItemAva('belt')}
+                    ></div>
+                    <div 
+                        onClick={status === 3 ? changeStatusItem.bind(this, type) : null} 
+                        data-item="feet"
+                        className={this.getClassItemAva('feet')}
+                    ></div>
                 </div>
                 
-                <div className={this.getClassWithMixin('combat___player__skills', mixin)}>
-                    <div className="combat__skills__line">
-                        <span className="combat__skills__line_bold">Сила:</span>
-                        <span>25</span>
-                    </div>
-                    <div className="combat__skills__line">
-                        <span className="combat__skills__line_bold">Ловкость:</span>
-                        <span>12</span>
-                    </div>
-                    <div className="combat__skills__line">
-                        <span className="combat__skills__line_bold">Мудрость:</span>
-                        <span>45</span>
-                    </div>
-                    <div className="combat__skills__line">
-                        <span className="combat__skills__line_bold">Интуиция:</span>
-                        <span>12</span>
-                    </div>
-                    <div className="combat__skills__line">
-                        <span className="combat__skills__line_bold">Выносливость:</span>
-                        <span>10</span>
-                    </div>
-                    <div className="combat__skills__line">
-                        <span className="combat__skills__line_bold">Интелект:</span>
-                        <span>0</span>
-                    </div>
-                </div>
             </div>
         )
 
@@ -65,4 +91,11 @@ class PlayerComponent extends Component {
 
 }
 
-export default PlayerComponent;
+const mapDispatchToProps = { changeStatusItem };
+const mapStateToProps = state => ({
+    status: state.loby.status,
+    items: state.loby.items,
+    players: state.loby.players
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerComponent);

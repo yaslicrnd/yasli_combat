@@ -9,15 +9,22 @@
     display: flex;
     border: none;
     height: 36px;
-    border-top: 2px solid #eeeeee;
+    border-top: 3px solid #eeeeee;
     outline: none;
+    padding: 0 12px;
 }
 .combat__chat__form button {
+    border: none;
     width: 100px;
-    display: flex;
-    background: #ddd;
-    color: #333;
+    background: #aaa;
+    color: #fff;
     font-weight: 600;
     justify-content: center;
     outline: none;
+    display: flex;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+.combat__chat__form button:hover {
+    background: blue;
 }

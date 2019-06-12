@@ -1,9 +1,7 @@
-let token;
-
 export default {
 
     getToken() {
-        return token || localStorage.getItem('token');
+        return localStorage.getItem('token');
     },
 
     setToken(token) {
@@ -12,6 +10,18 @@ export default {
 
     removeToken() {
         localStorage.removeItem('token');
+    },
+
+    getCombat() {
+        return localStorage.getItem('combat');
+    },
+
+    setCombat(combatId) {
+        localStorage.setItem('combat', combatId);
+    },
+
+    removeCombat() {
+        localStorage.removeItem('combat');
     }
 
 }

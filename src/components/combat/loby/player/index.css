@@ -5,9 +5,36 @@
     max-width: 300px;
     min-width: 300px;
 }
+.combat__loby__player__enemy.combat__loby__player_disable {
+    opacity: 0.5;
+}
+.combat__loby__player__you .combat__ava__item_active::after {
+    background: #46b7e6;
+}
+.combat__loby__player__enemy .combat__ava__item_active::after {
+    background: #c62b2b;
+}
 .combat__player__name {
     margin-bottom: 10px;
     font-weight: 600;
+    margin-top: 12px;
+}
+.combat__healths__status {
+    width: 50%;
+    background: #1cee5b;
+    height: 100%;
+    position: absolute;
+}
+.combat__healths__info {
+    position: absolute;
+    top: 0;
+    font-size: 12px;
+}
+.combat__loby__player__you .combat__healths__status {
+    left: 0;
+}
+.combat__loby__player__enemy .combat__healths__status {
+    right: 0;
 }
 .combat___player__skills_right, .combat__player__name_right {
     text-align: right;
@@ -34,33 +61,30 @@
     height: 75px;
     background-image: url(../../../../res/img/player/player_head.png);
     margin: 0 auto;
-    cursor: pointer;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
 }
 .combat__body {
-    width: 200px;
+    width: 100%;
     height: 70px;
     margin: 0 auto;
-    cursor: pointer;
     background-image: url(../../../../res/img/player/player_body.png);
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-
 }
 .combat__ava__item::after {
     content: "";
     position: absolute;
     width: 100%;
     height: 100%;
+    opacity: 0.4;
 }
 .combat__belt {
     width: 100%;
     height: 72px;
     margin: 0 auto;
-    cursor: pointer;
     background-image: url(../../../../res/img/player/player_belt.png);
     background-size: contain;
     background-position: center;
@@ -70,14 +94,14 @@
     transition: 0.3s all;
     position: relative;
 }
-.combat__ava__item:hover {
+.combat__loby__player:not(.combat__loby__player_disable) .combat__ava__item:hover {
+    cursor: pointer;
     opacity: 0.6;
 }
 .combat__feet {
     width: 100%;
     margin: 0 auto;
     display: flex;
-    cursor: pointer;
     justify-content: space-between;
     background-image: url(../../../../res/img/player/player_feet.png);
     background-size: contain;
@@ -90,4 +114,6 @@
     height: 62px;
     background: #333;
 }
-
+.combat__player__name_enemy {
+    text-align: right;
+}

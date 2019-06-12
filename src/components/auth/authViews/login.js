@@ -23,11 +23,11 @@ class Login extends Component {
             headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
             method: 'POST'
         }).then(res => res.json()).then(data => {
-            if(data.status == 'error') {
+            if(data.status === 'error') {
                 this.setState( { message: data.message } );
             } else {
                 authHelpers.setToken(data.user.token);
-                window.location = window.location;
+                window.location.reload();
             }
         });
 
