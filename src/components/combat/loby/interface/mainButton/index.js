@@ -49,7 +49,8 @@ class MainButtonComponent extends Component {
             }))
             .then(res => res.json())
             .then(data => {
-                if(data.combats.length && data.combats[0].id) {
+                let combats = data.combats;
+                if(combats.length && combats[combats.length-1].status !== 'finished') {
                     this.combat = data.combats[0].id;
                     authHelpers.setCombat(data.combats[0].id);
                     this.startWaiting();
@@ -71,6 +72,7 @@ class MainButtonComponent extends Component {
             })
             .then(res => res.json())
             .then(data => {
+                console.log(data.combat.id);
                 authHelpers.setCombat(data.combat.id);
                 this.startWaiting();
             });

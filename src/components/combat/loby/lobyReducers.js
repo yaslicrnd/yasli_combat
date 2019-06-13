@@ -47,11 +47,11 @@ const resetItems = (state) => {
             you: {'head' : false, 'body' : false, 'belt' : false, 'feet' : false, 'size' : 0}, 
             enemy: {'head' : false, 'body' : false, 'belt' : false, 'feet' : false, 'size' : 0}
         }
-    }
+    };
 }
 
 const changeTrunStatus = (turn_status, state) => {
-    return { ...state, turn_status: turn_status }
+    return { ...state, turn_status: turn_status };
 }
 
 const changeStatus = (status, state) => {
@@ -90,7 +90,7 @@ const changeItem = (event, side, state) => {
                     [item]: !items[item] 
                 }
             }
-        }
+        };
         
     } else {
         return state;

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './index.css';
-import authHelpers from '../../auth/authHelpers'
-import config from '../../../config'
 import helpers from '../../../helpers';
 
 class ChatForm extends Component {
@@ -15,19 +13,18 @@ class ChatForm extends Component {
     }
 
 	sendMessage = ()=> {
+        
+        helpers.socketSend({ 
+            method: 'addMessage', 
+            data: { 
+                user: 'xeywar', 
+                message: this.state.message,
+                timestamp: +new Date()
+            }
+        });
 
-        let userToken = authHelpers.getToken();
+        this.setState({message: ''});
 
-        if(userToken) {
-            helpers.ajax(config.backend + '/api/chat', {
-            	method: 'POST',
-            	headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            	body: helpers.jsonToUrlEncode({message: this.state.message, token: userToken})
-            })
-            .then(data => {
-                this.setState({ message: '' })
-            });
-        }
     }
     
     handleChange = (event)=> {

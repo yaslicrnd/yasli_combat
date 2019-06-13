@@ -1,7 +1,22 @@
-import authHelpers from './components/auth/authHelpers'
-import createPopUp from './components/errorPopup/createPopup'
+import authHelpers from './components/auth/authHelpers';
+import createPopUp from './components/errorPopup/createPopup';
+
+let socket = new WebSocket('ws://ya-combat.tw1.ru/ws/');
+let initSocket = new Promise(resolve => {
+    socket.addEventListener('open', () => resolve(socket));
+});
 
 export default {
+
+    getSocket() {
+        return initSocket;
+    },
+
+    socketSend(data) {
+        initSocket.then(socket => {
+            socket.send(JSON.stringify(data));
+        });
+    },
 
     jsonToUrlEncode(params) {
         return Object.keys(params).reduce((acc, item, index) => {
@@ -23,4 +38,5 @@ export default {
                 });
             });
     }
+
 };
