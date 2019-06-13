@@ -9,6 +9,9 @@ export const chatReducer = (state = beginState, action) => {
         case 'ACTION_UPDATE_MESSAGES':
             return updateMessages(action.messages, state);
 
+        case 'ACTION_UPDATE_ONLINE':
+            return updateOnline(action.users, state);
+
         default:
             return state;
     }
@@ -16,4 +19,7 @@ export const chatReducer = (state = beginState, action) => {
 
 const updateMessages = (messages, state) => {
     return { ...state, messages: messages };
+}
+const updateOnline = (users, state) => {
+    return { ...state, users: users };
 }

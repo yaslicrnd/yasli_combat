@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateMessages } from '../components/chat/chatActions';
+import { updateMessages, updateOnline } from '../components/chat/chatActions';
+import authHelpers from '../components/auth/authHelpers';
 
 class QueryHandler extends Component {
 
@@ -8,24 +9,37 @@ class QueryHandler extends Component {
         super(props);
         console.log(this.props);
 
-        this.props.initSocket.then(socket => {
+        let user = authHelpers.getUserInfo();
 
-            socket.addEventListener('message', (event) => {
-                let data = JSON.parse(event.data);
+        if(user) {
+            this.props.initSocket.then(socket => {
 
-                if(data.method) {
-                    switch (data.method) {
-                        case 'getMessages':
-                            this.props.updateMessages(data.messages);
-                            break;
-                
-                        default: 
-                            throw new Error('Error method'); 
+                socket.addEventListener('message', (event) => {
+                    let data = JSON.parse(event.data);
+
+                    if(data.method) {
+                        switch (data.method) {
+                            /* chat */
+                            case 'getMessages':
+                                this.props.updateMessages(data.messages);
+                                break;
+                            
+                            case 'getOnline':
+                                this.props.updateOnline(data.users);
+                                break;
+
+                            default: 
+                                throw new Error('Error method'); 
+                        }
                     }
-                }
-            });
+                });
 
-        });
+                socket.addEventListener('close', (event) => {
+                    console.log('close');
+                });
+
+            });
+        }
 
     }
 
@@ -39,5 +53,5 @@ class QueryHandler extends Component {
     
 }
 
-const mapDispatchToProps = { updateMessages };
+const mapDispatchToProps = { updateMessages, updateOnline };
 export default connect(null, mapDispatchToProps)(QueryHandler);

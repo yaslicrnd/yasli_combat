@@ -1,7 +1,9 @@
+import authHelpers from '../../auth/authHelpers';
+
 const beginState = {
     status: 1,
     players: {
-        you: {health: 30},
+        you: authHelpers.getUserInfo(),
         enemy: {health: 30}
     },
     items: {

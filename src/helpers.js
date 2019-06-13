@@ -1,12 +1,16 @@
 import authHelpers from './components/auth/authHelpers';
 import createPopUp from './components/errorPopup/createPopup';
 
-let socket = new WebSocket('ws://ya-combat.tw1.ru/ws/');
-let initSocket = new Promise(resolve => {
-    socket.addEventListener('open', () => resolve(socket));
-});
+let user = authHelpers.getUserInfo();
+let socket, initSocket;
+if(user) {
+    socket = new WebSocket('ws://ya-combat.tw1.ru/ws?token=' + user.token + '&username='+user.username);
+    initSocket = new Promise(resolve => {
+        socket.addEventListener('open', () => resolve(socket));
+    });
+}
 
-export default {
+let helpers = {
 
     getSocket() {
         return initSocket;
@@ -40,3 +44,5 @@ export default {
     }
 
 };
+
+export default helpers;

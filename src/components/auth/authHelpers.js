@@ -12,6 +12,14 @@ export default {
         localStorage.removeItem('token');
     },
 
+    setUserInfo(user) {
+        localStorage.setItem('user', JSON.stringify( { ...user, health: 30 } ));
+    },
+
+    getUserInfo() {
+        return JSON.parse(localStorage.getItem('user'));
+    },
+
     getCombat() {
         return localStorage.getItem('combat');
     },

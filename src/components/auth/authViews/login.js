@@ -27,6 +27,7 @@ class Login extends Component {
                 this.setState( { message: data.message } );
             } else {
                 authHelpers.setToken(data.user.token);
+                authHelpers.setUserInfo(data.user);
                 window.location.reload();
             }
         });
