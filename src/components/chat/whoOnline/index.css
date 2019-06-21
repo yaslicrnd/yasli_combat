@@ -1,15 +1,16 @@
 .combat__chat__why-online{
     box-sizing: border-box;
-    padding: 20px;
-    border-left: 4px solid #eee;
-    max-width: 300px;
-    min-width: 300px;
+    padding: 20px 26px 20px 40px;
+    max-width: 340px;
+    min-width: 340px;
+    background: url(..\..\..\res\img\chat_online_bg.jpg);
+    background-repeat: no-repeat;
 }
 .combat__chat__why-online-list{
     list-style: none;
     overflow: auto;
-    padding: 0px;
-
+    color: #fff;
+    padding: 0;
 }
 .combat__chat__why-online-username{
     margin-bottom: 10px;
@@ -18,7 +19,10 @@
 }
 .combat__chat__why-online-header{
     margin: 0;
-    color: #333;
+    display: flex;
+    color: #fff;
+    justify-content: space-between;
+    align-items: center;
 }
 .combat__chat__why-online-info-link{
     background: url(..\..\..\res\img\info.png);
@@ -34,6 +38,20 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 160px;
-
-
+    cursor: pointer;
+}
+.combat__chat__why__exit-button {
+    width: 26px;
+    height: 26px;
+    display: block;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(..\..\..\res\img\exit.png);
+    opacity: 0.4;
+    transition: 0.3s all;
+}
+.combat__chat__why__exit-button:hover {
+    opacity: 1;
 }

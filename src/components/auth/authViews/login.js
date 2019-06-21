@@ -28,7 +28,7 @@ class Login extends Component {
             } else {
                 authHelpers.setToken(data.user.token);
                 authHelpers.setUserInfo(data.user);
-                window.location.reload();
+                window.location = '/';
             }
         });
 

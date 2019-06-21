@@ -18,17 +18,18 @@ class Reg extends Component {
 
     signIn = (username, password)=> {
 
-        fetch(config.backend + '/api/register', {
+        fetch(config.backend + '/api/reg', {
             body: helpers.jsonToUrlEncode({username, password}),
             headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
             method: 'POST'
         }).then(res => res.json()).then(data => {
+            console.log(data);
             if(data.status === 'error') {
                 this.setState( { message: data.message } );
             } else {
                 authHelpers.setToken(data.user.token);
                 authHelpers.setUserInfo(data.user);
-                window.location.reload();
+                window.location = '/';
             }
         });
         

@@ -16,3 +16,6 @@ export const changeResults = (results) => ({
 export const changeTurnStatus = (turn_status) => ({
     type: 'ACTION_CHANGE_TURN_STATUS', turn_status
 });
+export const setStartBattle = (start) => ({
+    type: 'ACTION_SET_START_BATTLE', start
+});

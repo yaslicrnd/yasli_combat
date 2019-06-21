@@ -1,0 +1,21 @@
+.mainVeil {
+    width: 90px;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    background-position: center;
+    background-repeat: repeat-y;
+    z-index: 998;
+}
+.combat__loby__interface_fight .mainVeil {
+    transition: 1s all ease-in-out;
+}
+.mainVeil__left {
+    margin-left: -90px;
+    background-image: url(..\..\..\..\..\res\img\veil_left.jpg);
+    background-position: right;
+}
+.mainVeil__right {
+    background-image: url(..\..\..\..\..\res\img\veil_right.jpg);
+    background-position: left;
+}

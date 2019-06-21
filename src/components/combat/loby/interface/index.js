@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import LogsComponent from './logs/index';
 import FightComponent from './fight/index';
 import MainButtonComponent from './mainButton/index';
+import MainVeil from './mainVeil/index';
 import './index.css';
 
 class InterfaceComponent extends Component {
@@ -16,7 +17,9 @@ class InterfaceComponent extends Component {
     	return (
             <div className={this.getClassInterface('combat__loby__interface', status)}>
                 { status >= 3 ? <FightComponent/> : null }
+                <MainVeil side="left"/>
                 <MainButtonComponent/>
+                <MainVeil side="right"/>
                 { status >= 3 ? <LogsComponent/> : null }
             </div>
         )

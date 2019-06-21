@@ -4,3 +4,6 @@ export const updateMessages = (messages) => ({
 export const updateOnline = (users) => ({
     type: 'ACTION_UPDATE_ONLINE', users
 });
+export const updateRefer = (refer) => ({
+    type: 'ACTION_UPDATE_REFER', refer
+});

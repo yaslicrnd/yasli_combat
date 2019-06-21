@@ -12,7 +12,8 @@ const beginState = {
     },
     maxSize: {'you' : 2, 'enemy' : 1},
     results: [],
-    turn_status: null
+    turn_status: null,
+    start: null
 };
 
 export const lobyReducer = (state = beginState, action) => {
@@ -35,6 +36,9 @@ export const lobyReducer = (state = beginState, action) => {
 
         case 'ACTION_CHANGE_TURN_STATUS':
             return changeTrunStatus(action.turn_status, state);
+
+        case 'ACTION_SET_START_BATTLE':
+            return setStartBattle(action.start, state);
             
         default: 
             return state;
@@ -50,6 +54,10 @@ const resetItems = (state) => {
             enemy: {'head' : false, 'body' : false, 'belt' : false, 'feet' : false, 'size' : 0}
         }
     };
+}
+
+const setStartBattle = (start, state) => {
+    return { ...state, start: start };
 }
 
 const changeTrunStatus = (turn_status, state) => {

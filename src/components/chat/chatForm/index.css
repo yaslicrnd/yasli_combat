@@ -2,6 +2,22 @@
 	width: 100%;
     display: flex;
 }
+.combat__chat__form__case {
+    display: flex;
+    width: 100%;
+    height: 62px;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 16px;
+    box-sizing: border-box;
+    border-top: 1px solid #242321;
+}
+.combat__chat__case {
+    display: flex;
+    width: 100%;
+    position: relative;
+    padding-top: 3px;
+}
 .chat__input {
     width: calc(100% - 100px);
     box-sizing: border-box;
@@ -9,14 +25,22 @@
     display: flex;
     border: none;
     height: 36px;
-    border-top: 3px solid #eeeeee;
     outline: none;
-    padding: 0 12px;
+    padding: 0 0 0px 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 30px;
+    color: #fff;
+}
+.emoji-picker {
+    z-index: 1111 !important;
 }
 .combat__chat__form button {
     border: none;
-    width: 100px;
-    background: #aaa;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-image: url(..\..\..\res\img\send.png);
     color: #fff;
     font-weight: 600;
     justify-content: center;
@@ -24,7 +48,48 @@
     display: flex;
     cursor: pointer;
     transition: 0.3s all;
+    position: absolute;
+    right: 20px;
+    width: 15px;
+    height: 15px;
+    top: 13px;
+    padding: 0;
+}
+.emoji-text-field .emoji-trigger {
+    bottom: 8px;
+    right: 50px;
+    opacity: 1;
+    transition: opacity 0.3s;
+    background-repeat: no-repeat;
+    width: 18px;
+    height: 18px;
 }
 .combat__chat__form button:hover {
-    background: blue;
+    filter: invert(100%);
+}
+.emoji-text-field {
+    width: 100%;
+    height: 36px;
+}
+.emoji-text-field input, .emoji-text-field textarea {
+    height: 36px !important;
+}
+.emoji-text-field .emoji-trigger {
+    background-image: url(..\..\..\res\img\emoji.png);
+    transition: 0.3s all;
+}
+.emoji-text-field .emoji-trigger:hover {
+    filter: invert(100%);
+}
+.emoji-text-field .emoji-trigger::after {
+    background: transparent !important;
+}
+.emoji-picker .search-bar i:before {
+    top: 20px;
+}
+.emoji-picker ul.skin-tones li.selected {
+    top: 21px;
+}
+.emoji-text-field .emoji-picker {
+    bottom: 35px;
 }

@@ -1,26 +1,17 @@
 .combat__loby__interface {
-    width: 100%;
-    margin: 20px 0;
-    padding: 0 18px;
+    width: 126px;
     justify-content: center;
     align-items: center;
     display: flex;
     flex-flow: column;
+    position: relative;
+    background: url(..\..\..\..\res\img\interface_bg.jpg);
+    background-position: center;
 }
 .combat__loby__interface_fight {
+    transition: 2s width ease-in-out;
     justify-content: start;
-}
-.combat__player__healths {
-    display: flex;
     width: 100%;
-    height: 12px;
-    background: #ddd;
-    margin-bottom: 8px;
-    border-radius: 30px;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
 }
 .combat__interface__head__step {
     width: 30px;
@@ -31,18 +22,61 @@
 .combat__interface__head__item {
     display: flex;
 }
-.combat__interface__head_versus {
-    text-align: center;
-    font-size: 40px;
-    color: red;
-    font-weight: 600;
-    margin: 0 18px;
-}
 .combat__loby__interface__head {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 100%;
+    overflow: hidden;
+    z-index: 998;
+}
+.combat__loby__interface_fight .mainVeil__left {
+    left: 0;
+}
+.combat__loby__interface_fight .mainVeil__right {
+    left: 100%;
+}
+.combat__loby__interface_fight .combat__loby__interface__step-action  {
+    background: url(..\..\..\..\res\img\fight_action.png);
+    z-index: 997;
+    background-size: contain;
+    background-position: center center;
+    width: 176px;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    height: 50px;
+    padding: 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    position: relative;
+    margin-top: -7px;
+    display: flex;
+}
+.combat__loby__interface_fight .combat__loby__interface__step-action::before {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 40px;
+    background: url(..\..\..\..\res\img\button_yet.png);
+    right: 24px;
+    top: -20px;
+}
+.combat__loby__interface_fight .combat__loby__interface__step-action::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 40px;
+    background: url(..\..\..\..\res\img\button_yet.png);
+    left: 24px;
+    top: -20px;
+}
+.combat__loby__interface_fight .combat__loby__interface__step-action span {
+    transform: rotate(-2deg);
+}
+.combat__loby__interface_fight .combat__loby__interface__step-action:hover {
+    background-color: transparent !important;
+    filter: brightness(1.12);
 }
 .combat__interface__head__item_left .combat__interface__head__step {
     margin-right: 6px;
@@ -52,43 +86,65 @@
 }
 .combat__loby__interface__step-action {
     margin: 0 auto;
-    padding: 12px 16px;
-    background: #aaa;
+    padding: 0;
     color: #fff;
     cursor: pointer;
     transition: 0.3s background;
-    width: 100px;
-    height: 100px;
+    width: 126px;
+    height: 120px;
     border-radius: 100%;
     align-items: center;
     justify-content: center;
     display: flex;
     font-size: 19px;
-    margin-bottom: 16px;
+    z-index: 999;
+    margin-bottom: 28px;
+    padding-top: 5px;
 }
 .combat__loby__interface__step_fight {
-    margin-top: 16px;
+    margin:0;
     border-radius: 0;
     height: auto;
     width: auto;
     padding: 12px 24px;
 }
-.combat__loby__interface__step-action:hover {
-    background: blue;
+.combat__loby__interface__step_pending {
+    transition: none;
+    cursor: default;
 }
-.combat__loby__interface__logs {
-    width: 100%;
-    height: 30px;
-    border-top: 2px solid #ddd;
-    margin: 0 auto;
-    margin-top: 20px;
-    padding: 20px;
-    text-align: center;
-    box-sizing: border-box;
+.combat__loby__interface__step-action:not(.combat__loby__interface__step_pending):hover {
+    background-color: #000;
 }
 .combat__interface__head_title {
-    display: flex;
     align-items: center;
+    background: url(..\..\..\..\res\img\interface_head.png);
+    width: 296px;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    height: 62px;
+    position: relative;
+}
+.combat__interface__head_item {
+    color: #fff;
+    box-sizing: border-box;
+    width: 100px;
+    text-align: right;
+    margin-left: 2px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+.combat__interface__head_item:nth-child(3) {
+    text-align: left;
+    margin-left: 0;
+}
+.combat__interface__head_versus {
+    text-align: center;
+    color: red;
+    font-size: 23px;
+    box-sizing: border-box;
+    width: 78px;
 }
 .combat {
     height: 100vh;
@@ -96,13 +152,128 @@
 .combat__chat {
     display: flex;
     justify-content: space-between;
-    height: 35%;
-    flex-flow: column;
+    height: 265px;
+    min-height: 265px;
 }
 .combat__chat__messages {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: space-between;
-    flex-flow: row;
+    flex-flow: column;
+    background: url(..\..\..\..\res\img\chat_bg.jpg);
+}
+
+.radar {
+    width: 126px;
+    height: 126px;
+    position: relative;
+    background: url(..\..\..\..\res\img\interface_bg.jpg);
+    margin: 0 auto;
+    overflow: hidden;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background: -webkit-gradient(linear, left top, right top, color-stop(10%, #c79f7d), color-stop(40%, rgba(255, 255, 255, 0)));
+    background: -webkit-linear-gradient(left, #c79f7d 10%, rgba(255, 255, 255, 0) 40%);
+    background: -moz-linear-gradient(left, #c79f7d 10%, rgba(255, 255, 255, 0) 40%);
+    background: -o-linear-gradient(left, #c79f7d 10%, rgba(255, 255, 255, 0) 40%);
+    background: linear-gradient(to right, #c79f7d 10%, rgba(255, 255, 255, 0) 40%);
+    -webkit-animation: spinit 1.4s infinite linear;
+    -moz-animation: spinit 1.4s infinite linear;
+    -o-animation: spinit 1.4s infinite linear;
+    animation: spinit 1.4s infinite linear;
+    margin-top: -5px;
+}
+.radar::before {
+    width: 50%;
+    height: 50%;
+    background: url(..\..\..\..\res\img\interface_bg.jpg);
+    -webkit-border-radius: 100% 0 0 0;
+    -moz-border-radius: 100% 0 0 0;
+    border-radius: 100% 0 0 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+}
+.radar::after {
+    background: url(..\..\..\..\res\img\interface_bg.jpg);
+    width: 75%;
+    height: 75%;
+    -webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    border-radius: 999px;
+    content: '';
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0.6;
+}
+
+@-webkit-keyframes spinit {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+
+@-moz-keyframes spinit {
+    0% {
+        -moz-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+
+@-o-keyframes spinit {
+    0% {
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+
+@keyframes spinit {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+.combat__loby__exit-button {
+    position: absolute;
+    top: 0;
+    z-index: 1111;
+    background: red;
+    width: 120px;
+    height: 48px;
+    cursor: pointer;
 }

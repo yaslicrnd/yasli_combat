@@ -1,11 +1,11 @@
 export default {
 
-    getToken() {
-        return localStorage.getItem('token');
+    setToken(token) {
+        return localStorage.setItem('token', token);
     },
 
-    setToken(token) {
-        localStorage.setItem('token', token);
+    getToken() {
+        return localStorage.getItem('token');
     },
 
     removeToken() {
@@ -20,12 +20,12 @@ export default {
         return JSON.parse(localStorage.getItem('user'));
     },
 
-    getCombat() {
-        return localStorage.getItem('combat');
-    },
-
     setCombat(combatId) {
         localStorage.setItem('combat', combatId);
+    },
+
+    getCombat() {
+        return localStorage.getItem('combat');
     },
 
     removeCombat() {

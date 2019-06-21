@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { changePlayers, changeStatusGame, resetStatusItems, 
     changeResults, changeTurnStatus } from '../../lobyActions';
+import { statePopup } from '../../../../popup/popupActions';
 import authHelpers from '../../../../auth/authHelpers';
-import config from '../../../../../config';
 import helpers from '../../../../../helpers';
 
 class MainButtonComponent extends Component {
@@ -11,14 +11,21 @@ class MainButtonComponent extends Component {
     constructor(props) {
         super(props);
         
-        this.nameFightButton = ['Let\'s Go', 'Ожидание', 'Готов', 'Ожидание', 'Окей'];
+        this.nameFightButton = ['Let\'s Go', this.getPreloader(), 'Готов', 'Ожидание', 'Окей'];
         this.funcFightButton = [this.goWait, null, this.goTurn, null, this.goReset];
-        this.pollFightCounter = null;
-        this.combat = authHelpers.getCombat() || null;
     }
 
     // make class button
-    getClassButton = (name, status)=> status >= 3 ? name + ' combat__loby__interface__step_fight' : name;
+    getClassButton = (name, status)=> {
+        let str = name;
+        if(status >= 3) {
+            str += ' combat__loby__interface__step_fight';
+        }
+        if(status === 2) {
+            str += ' combat__loby__interface__step_pending';
+        }
+        return str;
+    }
     getTurnData = (items) => {
         let { you, enemy } = items;
 
@@ -33,113 +40,49 @@ class MainButtonComponent extends Component {
 
         return { blocks, hit };
     }
-    getStatus = (turn_status, status) => {
-        if(turn_status === undefined && status === 'pending') return 2;
-        if(turn_status === undefined && status === 'finished') return 5;
-        if(turn_status) return 3;
-        if(!turn_status) return 4;
+    getPreloader() {
+        return (
+            <div className="radar"></div>
+        );
     }
 
-    // polling
     goWait = ()=> {
-        if(!this.combat) {
-            fetch(config.backend + '/api/info?' + helpers.jsonToUrlEncode({
-                token: authHelpers.getToken(),
-                user_id: this.props.players.you.id
-            }))
-            .then(res => res.json())
-            .then(data => {
-                let combats = data.combats;
-                if(combats.length && combats[combats.length-1].status !== 'finished') {
-                    this.combat = data.combats[0].id;
-                    authHelpers.setCombat(data.combats[0].id);
-                    this.startWaiting();
-                } else {
-                    this.createFight();
-                }
-            });
-        } else {
-            this.startWaiting();
-        }
-    }
 
-    createFight = ()=> {
-        if(!this.combat) {
-            fetch(config.backend + '/api/fight', {
-                body: helpers.jsonToUrlEncode({token: authHelpers.getToken()}),
-                headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
-                method: 'POST'
-            })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data.combat.id);
-                authHelpers.setCombat(data.combat.id);
-                this.startWaiting();
-            });
-        }
-    }
-
-    startWaiting = ()=> {
-        this.props.changeStatusGame(2);
-        this.pollFight();
-        this.pollFightCounter = setInterval(this.pollFight.bind(this), 3000);
-    }
-
-    pollFight = ()=> {
-
-        let body = helpers.jsonToUrlEncode({ 
-            token: authHelpers.getToken(), 
-            combat_id: authHelpers.getCombat() 
+        let user = authHelpers.getUserInfo();
+        
+        helpers.socketSend({
+            method: 'getFight',
+            data: {
+                user_id: user.user_id
+            }
         });
 
-        fetch(config.backend + '/api/status?' + body)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data.combat);
-
-                let checkTurnStatus = this.props.turn_status !== data.combat.turn_status;
-                let checkResults = this.props.results.length !== data.combat.results.length;
-
-                if(checkTurnStatus || checkResults) {
-                    this.props.changeResultInfo(
-                        data.combat.results, 
-                        { you: data.combat.you, enemy: data.combat.enemy || {health: 30} },
-                        this.getStatus(data.combat.turn_status, data.combat.status),
-                        data.combat.turn_status
-                    );
-                }
-
-                if(data.combat.status === 'finished') {
-                    clearInterval(this.pollFightCounter);
-                    // showPopup win or lose
-                }
-
-            });
+        this.props.changeStatusGame(2);
 
     }
 
     goTurn = ()=> {
+
         if(this.props.items.you.size === 2 && this.props.items.enemy.size === 1) {
 
-            fetch(config.backend + '/api/turn', {
-                headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
-                method: 'POST',
-                body: helpers.jsonToUrlEncode({ 
-                    token: authHelpers.getToken(), 
+            let user = authHelpers.getUserInfo();
+            
+            helpers.socketSend({
+                method: 'setTurn',
+                data: {
+                    player: user.user_id, 
                     combat_id: authHelpers.getCombat(),
-                    turn: JSON.stringify(this.getTurnData(this.props.items))
-                })
+                    turn: this.getTurnData(this.props.items)
+                }
             });
 
         } else {
-            // showError
-
+            this.props.statePopup({ message: 'Защитите 2 части тела, и атакуйте 1 противника!'});
         }
+
     }
 
     goReset = ()=> {
-        this.combat = null;
-        authHelpers.removeCombat();
         this.props.changeResultInfo([], { you: {health: 30}, enemy: {health: 30} }, 1, false);
     }
 
@@ -149,13 +92,16 @@ class MainButtonComponent extends Component {
             <div 
                 className={this.getClassButton('combat__loby__interface__step-action', status)}
                 onClick={this.funcFightButton[status-1]}
-            >{this.nameFightButton[status-1]}</div>
+            ><span>{this.nameFightButton[status-1]}</span></div>
         )
     }
 
 }
 
 const mapDispatchToProps = dispatch => ({ 
+    statePopup: (data) => {
+        dispatch(statePopup(data));
+    },
     changePlayers: (players) => {
         dispatch(changePlayers(players));
     }, 

@@ -5,6 +5,19 @@ import './index.css';
 
 class PlayerComponent extends Component {
 
+    constructor(props) {
+        super(props);
+        this.update = false;
+    }
+
+    shouldComponentUpdate(nextProps) {
+        let { type } = this.props;
+        if(nextProps.players[type].health !== this.props.players[type].health) {
+            this.update = true;
+        }
+        return true;
+    }
+
     // making classes
     getClassWithMixin = (name, mixin)=> mixin ? name + ' ' + name + '_' + mixin : name;
     getPercentHealth = (health)=> {
@@ -25,7 +38,7 @@ class PlayerComponent extends Component {
     }
 
     getNamePlayer = (type, username)=> {
-        if(type === 'enemy' && !username) return 'Возможный противник';
+        if(type === 'enemy' && !username) return 'Противник';
         return username;
     }
 
@@ -38,27 +51,40 @@ class PlayerComponent extends Component {
         }
     }
 
+    getClassHalthsStatus = () => {
+        let str = 'combat__healths__status';
+        if(this.update === true) {
+            str += ' combat__healths__status_update';
+            setTimeout(() => {
+                this.update = false;
+            }, 1000);
+        }
+        return str;
+    }
+
     render() {
 
         let { type, players, status, changeStatusItem } = this.props;
 
-        console.log(players);
-
     	return (
             <div className={this.getClassTypePlayer(type, status)}>
 
-                <div className="combat__player__healths">
-                    <div 
-                        className="combat__healths__status" 
-                        style={ {width: this.getPercentHealth(players[type].health).toFixed(0) + '%'} }
-                    ></div>
-                    <div className="combat__healths__info">
-                        {this.getPercentHealth(players[type].health).toFixed(0)}/100%
+                <div className="combat__player__side">
+                    <div className="combat__player__healths">
+                        <div className="combat__player__healths__case">
+                            <div 
+                                className={this.getClassHalthsStatus()} 
+                                style={ {width: this.getPercentHealth(players[type].health).toFixed(0) + '%'} }
+                            ></div>
+                            <div className="combat__healths__info">
+                                {this.getPercentHealth(players[type].health).toFixed(0)}/100%
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div className={this.getClassWithMixin('combat__player__name', type)}>
-                    {this.getNamePlayer(type, players[type].username)}
+                    <div className={this.getClassWithMixin('combat__player__name', type)}>
+                        {this.getNamePlayer(type, players[type].username)}
+                    </div>
                 </div>
 
                 <div className="combat__player__ava">

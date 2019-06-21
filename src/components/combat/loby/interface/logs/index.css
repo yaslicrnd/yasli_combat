@@ -1,3 +1,54 @@
-* {
-    
+.combat__loby__interface__logs {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 36px;
+    box-sizing: border-box;
+    color: #fff;
+    min-width: 300px;
+    animation: showLogs 1.5s forwards;
+}
+@keyframes showLogs {
+    0% {
+        opacity: 0;
+    }
+    70% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.combat__loby__logs__item {
+    padding: 12px;
+    box-sizing: border-box;
+}
+.combat__loby__logs__item:nth-child(2n+1) {
+    border-bottom: 2px solid #7d7d7d;
+}
+.combat__loby__logs__item_center {
+    text-align: center;
+}
+.combat__loby__logs__item_you {
+    background: rgba(39, 78, 125, 0.5);
+}
+.combat__loby__logs__item_enemy {
+    text-align: right;
+    background: rgba(255, 0, 0, 0.2);
+}
+.combat__loby__logs__item:first-child, .combat__loby__logs__item:last-child {
+    border: none;
+}
+.combat__loby__logs__case {
+    max-height: 340px;
+    height: 340px !important;
+}
+.scrollbar-view {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    overflow-y: scroll;
+    margin-right: -17px;
+    padding-right: 10px;
 }
