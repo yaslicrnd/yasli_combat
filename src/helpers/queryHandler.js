@@ -6,6 +6,8 @@ import { changePlayers, changeStatusGame, resetStatusItems,
 import authHelpers from '../components/auth/authHelpers';
 import { statePopup } from '../components/popup/popupActions';
 
+let resultsSize = 0;
+
 class QueryHandler extends Component {
 
     constructor(props) {
@@ -43,6 +45,8 @@ class QueryHandler extends Component {
                                     data.combat.turnStatus,
                                     data.combat.start
                                 );
+
+                                resultsSize = data.combat.results.length;
 
                                 if(data.combat.status === 'finished') {
                                     let message;
@@ -131,7 +135,9 @@ const mapDispatchToProps = dispatch => ({
         dispatch(changeStatusGame(status));
         dispatch(changeTurnStatus(turn_status));
         dispatch(setStartBattle(start));
-        dispatch(resetStatusItems());
+        if(resultsSize != results.length || !turn_status) {
+            dispatch(resetStatusItems());
+        }
     }
 });
 

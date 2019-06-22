@@ -12,9 +12,12 @@ class PlayerComponent extends Component {
 
     shouldComponentUpdate(nextProps) {
         let { type } = this.props;
-        if(nextProps.results.health !== this.props.results.length) {
+
+        if(nextProps.results.length !== this.props.results.length) {
             this.update = true;
+            return true;
         }
+
         return true;
     }
 
@@ -121,7 +124,8 @@ const mapDispatchToProps = { changeStatusItem };
 const mapStateToProps = state => ({
     status: state.loby.status,
     items: state.loby.items,
-    players: state.loby.players
+    players: state.loby.players,
+    results: state.loby.results
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerComponent);
