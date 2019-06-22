@@ -12,7 +12,7 @@ class PlayerComponent extends Component {
 
     shouldComponentUpdate(nextProps) {
         let { type } = this.props;
-        if(nextProps.players[type].health !== this.props.players[type].health) {
+        if(nextProps.results.health !== this.props.results.length) {
             this.update = true;
         }
         return true;
