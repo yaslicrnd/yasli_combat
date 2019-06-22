@@ -152,8 +152,8 @@
 .combat__chat {
     display: flex;
     justify-content: space-between;
-    height: 265px;
-    min-height: 265px;
+    height: 28%;
+    min-height: 30%;
 }
 .combat__chat__messages {
     width: 100%;
