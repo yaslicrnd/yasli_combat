@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Game from './pages/game/index';
 import Auth from './pages/auth/index';
@@ -21,7 +21,7 @@ function PublicRoute(props) {
             pathname: '/',
             state: {from: props.location}
         }}/> :
-        <Route {...props} />
+        <Route {...props} />;
 }
 
 class Main extends Component {
@@ -41,3 +41,4 @@ class Main extends Component {
 }
 
 export default Main;
+

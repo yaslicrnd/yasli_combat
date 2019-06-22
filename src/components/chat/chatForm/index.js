@@ -13,15 +13,15 @@ class ChatForm extends Component {
 
         this.state = {
             message: ''
-        }
+        };
 
     }
 
     shouldComponentUpdate(nextProps) {
         let nowValue = this._field.getUnicode();
 
-        if(this.props.refer !== nextProps.refer && nextProps.refer) {
-            let unicodeValue = this._field.getUnicode().replace(this.props.refer+', ', '');
+        if (this.props.refer !== nextProps.refer && nextProps.refer) {
+            let unicodeValue = this._field.getUnicode().replace(this.props.refer + ', ', '');
             this._field.state.value = nextProps.refer + ', ' + unicodeValue;
             this.setState({message: this._field.state.value});
             document.querySelector('.chat__input').focus();
@@ -97,3 +97,4 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatForm);
+

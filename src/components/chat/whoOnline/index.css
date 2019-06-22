@@ -5,6 +5,7 @@
     min-width: 340px;
     background: url(..\..\..\res\img\chat_online_bg.jpg);
     background-repeat: no-repeat;
+    min-height: 30%;
 }
 .combat__chat__why-online-list{
     list-style: none;
