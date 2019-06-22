@@ -1,5 +1,5 @@
 .combat__loby {
-    height: calc(100% - 265px);
+    height: 70%;
     display: flex;
     background: url(..\..\..\res\img\main_bg.jpg);
     justify-content: space-between;
