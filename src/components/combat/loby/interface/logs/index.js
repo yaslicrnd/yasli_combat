@@ -46,6 +46,7 @@ class LogsComponent extends Component {
                     className="combat__loby__logs__case"
                     ref="scrollbars"
                     renderView={() => <div className="scrollbar-view"/>}
+                    renderTrackHorizontal={() => <div className="track-horizontal"/>}
                     renderTrackVertical={() => <div className="track-vertical"/>}
                     renderThumbVertical={props => <div {...props} className="thumb-vertical"/>}
                 >

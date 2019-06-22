@@ -59,6 +59,16 @@ class QueryHandler extends Component {
                                     authHelpers.removeCombat();
                                 }
 
+                                if(data.combat.status === 'stop') {
+                                    this.props.statePopup({ 
+                                        message: 'Противник покинул бой!',
+                                        clickFunc: () => {
+                                            window.location = '/';
+                                        }
+                                    });
+                                    authHelpers.removeCombat();
+                                }
+
                                 break;
 
                             default: 
