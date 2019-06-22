@@ -37,7 +37,7 @@ class QueryHandler extends Component {
                                 }
 
                                 this.props.changeResultInfo(
-                                    data.combat.results, 
+                                    data.combat.results,
                                     { you: data.combat.you, enemy: data.combat.enemy || {health: 30} },
                                     this.getStatus(data.combat.turnStatus, data.combat.status),
                                     data.combat.turnStatus,

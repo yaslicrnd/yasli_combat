@@ -9,18 +9,19 @@ class Game extends Component {
     render() {
         return (
             <div className="combat">
-                <LobyComponent></LobyComponent>
+                <LobyComponent/>
                 <div className="combat__chat">
                     <div className="combat__chat__messages">
-                        <ListMessageComponent></ListMessageComponent>
-                        <ChatForm></ChatForm>
+                        <ListMessageComponent/>
+                        <ChatForm/>
                     </div>
-                    <ListWhoOnline></ListWhoOnline>
+                    <ListWhoOnline/>
                 </div>
             </div>
-        )
+        );
     }
 
 }
 
 export default Game;
+

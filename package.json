@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "eslint-config-yandex": "^1.0.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
@@ -30,6 +31,8 @@
   },
   "devDependencies": {
     "emoji-picker-textfield": "^0.2.0",
+    "eslint": "^6.0.0",
+    "eslint-plugin-react": "^7.13.0",
     "react-custom-scrollbars": "^4.2.1",
     "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
