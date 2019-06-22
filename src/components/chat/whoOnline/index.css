@@ -22,16 +22,17 @@
 .combat__chat__why-online-header{
     margin: 0;
     display: flex;
-    color: #fff;
+    color: #ffffff;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 12px;
 }
 .combat__chat__why-online-info-link{
     background: url(..\..\..\res\img\info.png);
     width: 16px;
     height: 16px;
     display: inline-block;
-    margin-top:4px; 
+    margin-top:4px;
 
 }
 .combat__chat__why-online-text{
